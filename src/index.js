@@ -24,11 +24,18 @@ function checksExistsUserAccount(request, response, next) {
 }
 
 function checksCreateTodosUserAvailability(request, response, next) {
-  
+  const { user } = request;
+
+  if (user.pro === true) {
+    return next();
+  } else { 
+    return response.status(403).json({ error: "User already got ten todos" })
+  }
+
 }
 
 function checksTodoExists(request, response, next) {
-  // Complete aqui
+  
 }
 
 function findUserById(request, response, next) {
